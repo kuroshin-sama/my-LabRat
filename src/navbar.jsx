@@ -1,10 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import pic from "./assets/ali.jpg";
 import { useState } from "react";
-function navtrg(){
-const navtrg = document.getElementById("navtrg").childNodes
-console.log(navtrg)
-}
+import Navtrg from "./navtrg"
 export default function Navbar() {
   const location = useLocation();
   const [home, setHome] = useState("home");
@@ -15,11 +12,7 @@ export default function Navbar() {
     <aside className={`${navstate ? "navheader" : "header"}`}>
       <div className="img">
         <img src={pic} alt="ali" />
-        <p id="animtxt">
-          Ali
-          <br />
-          cooler
-        </p>
+        <p id="animtxt" className="bg-gradient-to-br from-[#ff0000] to-[#3518b8] min-w-24 h-12 bg-clip-text text-transparent"></p>
       </div>
       <div className={`${navstate ? "navrefrence" : "refrence"}`}>
         <Link to="/" className={location.pathname === "/" ? "active" : ""}>
@@ -74,11 +67,11 @@ export default function Navbar() {
           <i className="fas fa-arrow-up-right-from-square unlink"></i>
         </a>
       </div>
-      <button id="navtrg" className=" fixed flex flex-col right-7 gap-1 top-8 " onClick={() => setnavstate(!navstate) & navtrg()}>
-        <span className="bg-red-500 rounded-full min-h-0.5 min-w-4 transition-all duration-300"></span>
-        <span className="bg-red-500 rounded-full min-h-0.5 min-w-4 transition-all duration-300"></span>
-        <span className="bg-red-500 rounded-full min-h-0.5 min-w-4 transition-all duration-300"></span>
-      </button>
+      <div id="navtrg" className=" md:hidden fixed cursor-pointer flex flex-col px-2 justify-center p-1 right-7 gap-1 top-8 hover:scale-110 transition-all duration-300 active:scale-95" onClick={() => setnavstate(!navstate) & Navtrg()}>
+        <span className={`bg-red-500 rounded-full min-h-1 w-6 transition-all duration-300 ${navstate ? 'rotate-45 translate-y-2':'' }`}></span>
+        <span className={`bg-red-500 rounded-full min-h-1 w-6 transition-all duration-300 ${navstate ? ' opacity-0':'' }`}></span>
+        <span className={`bg-red-500 rounded-full min-h-1 w-6 transition-all duration-300 ${navstate ? '-rotate-45 -translate-y-2':'' }`}></span>
+      </div>
     </aside>
   );
 }
